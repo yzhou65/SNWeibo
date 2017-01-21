@@ -16,6 +16,8 @@
 		8ABB0EB81E3320B60090852A /* DiscoverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABB0EB71E3320B60090852A /* DiscoverTableViewController.swift */; };
 		8ABB0EBA1E3320D60090852A /* MessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABB0EB91E3320D60090852A /* MessageTableViewController.swift */; };
 		8ABB0EBC1E3320E30090852A /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABB0EBB1E3320E30090852A /* ProfileTableViewController.swift */; };
+		8ABB0EC01E332F150090852A /* MainVCSettings.json in Resources */ = {isa = PBXBuildFile; fileRef = 8ABB0EBE1E332F150090852A /* MainVCSettings.json */; };
+		8ABB0EC11E332F150090852A /* NullViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABB0EBF1E332F150090852A /* NullViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		8ABB0EB71E3320B60090852A /* DiscoverTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverTableViewController.swift; sourceTree = "<group>"; };
 		8ABB0EB91E3320D60090852A /* MessageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewController.swift; sourceTree = "<group>"; };
 		8ABB0EBB1E3320E30090852A /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
+		8ABB0EBE1E332F150090852A /* MainVCSettings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MainVCSettings.json; sourceTree = "<group>"; };
+		8ABB0EBF1E332F150090852A /* NullViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NullViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +171,7 @@
 		8ABB0EAD1E331F680090852A /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				8ABB0EBD1E332F150090852A /* Resource */,
 				8ABB0EB11E33204B0090852A /* MainViewController.swift */,
 			);
 			path = Main;
@@ -193,6 +198,15 @@
 			children = (
 			);
 			path = Tools;
+			sourceTree = "<group>";
+		};
+		8ABB0EBD1E332F150090852A /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				8ABB0EBE1E332F150090852A /* MainVCSettings.json */,
+				8ABB0EBF1E332F150090852A /* NullViewController.swift */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -305,6 +319,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8ABB0EC01E332F150090852A /* MainVCSettings.json in Resources */,
 				8ABB0E831E33199D0090852A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -336,6 +351,7 @@
 				8ABB0EB81E3320B60090852A /* DiscoverTableViewController.swift in Sources */,
 				8ABB0EBA1E3320D60090852A /* MessageTableViewController.swift in Sources */,
 				8ABB0E7C1E33199D0090852A /* AppDelegate.swift in Sources */,
+				8ABB0EC11E332F150090852A /* NullViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
