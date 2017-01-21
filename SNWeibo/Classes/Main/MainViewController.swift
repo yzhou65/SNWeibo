@@ -12,13 +12,34 @@ class MainViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        // set tabbar's tintColor, otherwise tabbar items will be blue at default
+        // before iOS 7, tintColor only affects title
+        tabBar.tintColor = UIColor.orange
+        
+        // create home page
+        addChildVC(HomeTableViewController(), title: "Home", imageName: "tabbar_home")
+        addChildVC(MessageTableViewController(), title: "Message", imageName: "tabbar_message_center")
+        addChildVC(DiscoverTableViewController(), title: "Discover", imageName: "tabbar_discover")
+        addChildVC(ProfileTableViewController(), title: "Me", imageName: "tabbar_profile")
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    /**
+     * initialize child controllers
+     */
+    private func addChildVC(_ childController: UIViewController, title:String, imageName: String) {
+        // set tabbar and navigation bar
+        childController.tabBarItem.image = UIImage(named: imageName)
+        childController.tabBarItem.selectedImage = UIImage(named: imageName + "_highlighted")
+        //        childController.tabBarItem.title = "Home"
+        //        childController.navigationItem.title = "Home"
+        childController.title = title
+        
+        // encapsulate a navigation controller
+        let nav = UINavigationController()
+        nav.addChildViewController(childController)
+        
+        addChildViewController(nav)
     }
     
 }
