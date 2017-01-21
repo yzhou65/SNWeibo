@@ -17,6 +17,34 @@ class MainViewController: UITabBarController {
         // before iOS 7, tintColor only affects item title, not item image 
         tabBar.tintColor = UIColor.orange
         
+        // init all childViewControllers
+        initChildViewControllers()
+    }
+    
+    /**
+     * insert the "+" shaped tabbar item in viewWillAppear 
+     * Because viewDidLoad has not have other child items
+     */
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupComposeBtn()
+    }
+    
+    private func setupComposeBtn() {
+        tabBar.addSubview(composeBtn)
+        
+        // adjust composeBtn's location
+        let width = UIScreen.main.bounds.size.width / CGFloat(viewControllers!.count)
+        
+        let rect = CGRect(x: 0, y: 0, width: width, height: 49)
+        // Before swift 3.0: CGRectOffset(rect, x, y)
+        composeBtn.frame = rect.offsetBy(dx: 2 * width, dy: 0)
+    }
+    
+    /**
+     * init all childViewControllers
+     */
+    private func initChildViewControllers() {
         // using json file to create childViewControllers
         // get json file
         let path = Bundle.main.path(forResource: "MainVCSettings", ofType: "json")
@@ -46,11 +74,7 @@ class MainViewController: UITabBarController {
                 addChildVC("DiscoverTableViewController", title: "Discover", imageName: "tabbar_discover")
                 addChildVC("ProfileTableViewController", title: "Me", imageName: "tabbar_profile")
             }
-            
-            
         }
-        
-        
     }
     
     /**
@@ -82,4 +106,25 @@ class MainViewController: UITabBarController {
         addChildViewController(nav)
     }
     
+    // MARK: - lazy init
+    private lazy var composeBtn: UIButton = {
+        let btn = UIButton()
+        btn.setImage(UIImage(named:"tabbar_compose_icon_add"), for: UIControlState.normal)
+        btn.setImage(UIImage(named:"tabbar_compose_icon_add_highlighted"), for: UIControlState.highlighted)
+        btn.setBackgroundImage(UIImage(named:"tabbar_compose_button"), for: UIControlState.normal)
+        btn.setBackgroundImage(UIImage(named:"tabbar_compose_button_highlighted"), for: UIControlState.highlighted)
+        
+        // btn's listener
+        btn.addTarget(self, action: #selector(composeBtnClick), for: UIControlEvents.touchUpInside)
+        return btn
+    }()
+    
+    /**
+     * Called when composeBtn is clicked.
+     * This method cannot be private
+     */
+    func composeBtnClick() {
+        //Before swift 3.0, #function was __FUNCTION__
+        print(#function)
+    }
 }
