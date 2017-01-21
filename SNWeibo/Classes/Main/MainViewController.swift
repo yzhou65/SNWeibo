@@ -31,7 +31,7 @@ class MainViewController: UITabBarController {
                 // traverse the dictArr
                 for dict in dictArr as! [[String: String]] {
                     // addChildVC method's arguments are not ?, so dict[] needs !
-                    addChildVC(dict["vcName"]!, title: dict["title"]!, imageName: "tabbar_home")
+                    addChildVC(dict["vcName"]!, title: dict["title"]!, imageName: dict["imageName"]!)
                 }
             } catch {
                 print(error)
@@ -39,6 +39,10 @@ class MainViewController: UITabBarController {
                 // exceptions happened, locally create childViewControllers
                 addChildVC("HomeTableViewController", title: "Home", imageName: "tabbar_home")
                 addChildVC("MessageTableViewController", title: "Message", imageName: "tabbar_message_center")
+                
+                // add "+" shaped controller
+                addChildVC("NullViewController", title: "", imageName: "")
+                
                 addChildVC("DiscoverTableViewController", title: "Discover", imageName: "tabbar_discover")
                 addChildVC("ProfileTableViewController", title: "Me", imageName: "tabbar_profile")
             }
