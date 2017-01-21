@@ -17,11 +17,36 @@ class MainViewController: UITabBarController {
         // before iOS 7, tintColor only affects item title, not item image 
         tabBar.tintColor = UIColor.orange
         
-        // create home page
-        addChildVC("HomeTableViewController", title: "Home", imageName: "tabbar_home")
-        addChildVC("MessageTableViewController", title: "Message", imageName: "tabbar_message_center")
-        addChildVC("DiscoverTableViewController", title: "Discover", imageName: "tabbar_discover")
-        addChildVC("ProfileTableViewController", title: "Me", imageName: "tabbar_profile")
+        // using json file to create childViewControllers
+        // get json file
+        let path = Bundle.main.path(forResource: "MainVCSettings", ofType: "json")
+        if let jsonFile = path {
+            let jsonData = NSData(contentsOfFile: jsonFile)
+            
+            // serialize the json file
+            do {
+                // do..try..catch is like python's try..except
+                let dictArr = try JSONSerialization.jsonObject(with: jsonData as! Data, options: JSONSerialization.ReadingOptions.mutableContainers)
+                
+                // traverse the dictArr
+                for dict in dictArr as! [[String: String]] {
+                    // addChildVC method's arguments are not ?, so dict[] needs !
+                    addChildVC(dict["vcName"]!, title: dict["title"]!, imageName: "tabbar_home")
+                }
+            } catch {
+                print(error)
+                
+                // exceptions happened, locally create childViewControllers
+                addChildVC("HomeTableViewController", title: "Home", imageName: "tabbar_home")
+                addChildVC("MessageTableViewController", title: "Message", imageName: "tabbar_message_center")
+                addChildVC("DiscoverTableViewController", title: "Discover", imageName: "tabbar_discover")
+                addChildVC("ProfileTableViewController", title: "Me", imageName: "tabbar_profile")
+            }
+            
+            
+        }
+        
+        
     }
     
     /**
