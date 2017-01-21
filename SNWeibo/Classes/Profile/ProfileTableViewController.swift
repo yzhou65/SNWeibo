@@ -8,16 +8,15 @@
 
 import UIKit
 
-class ProfileTableViewController: UITableViewController {
+class ProfileTableViewController: BaseTableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        // user is not loggined in, set VisitorView
+        if !userLogin {
+            self.visitorView?.setupVisitorInfo(isHome: false, imageName: "visitordiscover_image_profile", message: "Once logged in, your profile will display")
+        }
     }
 
     override func didReceiveMemoryWarning() {

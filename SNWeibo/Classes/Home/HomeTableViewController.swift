@@ -8,17 +8,15 @@
 
 import UIKit
 
-class HomeTableViewController: UITableViewController {
+class HomeTableViewController: BaseTableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
+        // user is not loggined in, set VisitorView
+        if !userLogin {
+            self.visitorView?.setupVisitorInfo(isHome: true, imageName: "visitordiscover_feed_image_house", message: "Follow friends and what they are going on with")
+        }
     }
 
     override func didReceiveMemoryWarning() {

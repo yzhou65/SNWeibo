@@ -15,7 +15,8 @@ class MainViewController: UITabBarController {
         
         // set tabbar's tintColor, otherwise tabbar items will be blue at default
         // before iOS 7, tintColor only affects item title, not item image 
-        tabBar.tintColor = UIColor.orange
+        // However, if appearance is set, tintColor setting is no longer needed
+//        tabBar.tintColor = UIColor.orange
         
         // init all childViewControllers
         initChildViewControllers()
@@ -30,7 +31,7 @@ class MainViewController: UITabBarController {
         setupComposeBtn()
     }
     
-    private func setupComposeBtn() {
+    fileprivate func setupComposeBtn() {
         tabBar.addSubview(composeBtn)
         
         // adjust composeBtn's location
@@ -44,7 +45,7 @@ class MainViewController: UITabBarController {
     /**
      * init all childViewControllers
      */
-    private func initChildViewControllers() {
+    fileprivate func initChildViewControllers() {
         // using json file to create childViewControllers
         // get json file
         let path = Bundle.main.path(forResource: "MainVCSettings", ofType: "json")
@@ -80,7 +81,7 @@ class MainViewController: UITabBarController {
     /**
      * initialize child controllers
      */
-    private func addChildVC(_ childControllerName: String, title: String, imageName:  String) {
+    fileprivate func addChildVC(_ childControllerName: String, title: String, imageName:  String) {
         // string -> class
         // namespace is at default = project name, but it can be changed by changing the product name in "Build setting".
         // get namespace (Swift 2.0: NSBundle.mainBundle())
@@ -107,7 +108,7 @@ class MainViewController: UITabBarController {
     }
     
     // MARK: - lazy init
-    private lazy var composeBtn: UIButton = {
+    fileprivate lazy var composeBtn: UIButton = {
         let btn = UIButton()
         btn.setImage(UIImage(named:"tabbar_compose_icon_add"), for: UIControlState.normal)
         btn.setImage(UIImage(named:"tabbar_compose_icon_add_highlighted"), for: UIControlState.highlighted)

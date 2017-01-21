@@ -18,6 +18,9 @@
 		8ABB0EBC1E3320E30090852A /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABB0EBB1E3320E30090852A /* ProfileTableViewController.swift */; };
 		8ABB0EC01E332F150090852A /* MainVCSettings.json in Resources */ = {isa = PBXBuildFile; fileRef = 8ABB0EBE1E332F150090852A /* MainVCSettings.json */; };
 		8ABB0EC11E332F150090852A /* NullViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABB0EBF1E332F150090852A /* NullViewController.swift */; };
+		8ABB0EC31E3349CA0090852A /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABB0EC21E3349CA0090852A /* BaseTableViewController.swift */; };
+		8ABB0EC51E334BED0090852A /* VisitorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABB0EC41E334BEC0090852A /* VisitorView.swift */; };
+		8ABB0EC71E3353B20090852A /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABB0EC61E3353B20090852A /* UIView+AutoLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +58,9 @@
 		8ABB0EBB1E3320E30090852A /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		8ABB0EBE1E332F150090852A /* MainVCSettings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MainVCSettings.json; sourceTree = "<group>"; };
 		8ABB0EBF1E332F150090852A /* NullViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NullViewController.swift; sourceTree = "<group>"; };
+		8ABB0EC21E3349CA0090852A /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
+		8ABB0EC41E334BEC0090852A /* VisitorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisitorView.swift; sourceTree = "<group>"; };
+		8ABB0EC61E3353B20090852A /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +179,8 @@
 			children = (
 				8ABB0EBD1E332F150090852A /* Resource */,
 				8ABB0EB11E33204B0090852A /* MainViewController.swift */,
+				8ABB0EC21E3349CA0090852A /* BaseTableViewController.swift */,
+				8ABB0EC41E334BEC0090852A /* VisitorView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -196,6 +204,7 @@
 		8ABB0EB01E331F680090852A /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				8ABB0EC61E3353B20090852A /* UIView+AutoLayout.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -278,17 +287,20 @@
 					8ABB0E771E33199D0090852A = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = W46FRQ7PW6;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					8ABB0E8B1E33199D0090852A = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = W46FRQ7PW6;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 8ABB0E771E33199D0090852A;
 					};
 					8ABB0E961E33199D0090852A = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = W46FRQ7PW6;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 8ABB0E771E33199D0090852A;
 					};
@@ -347,9 +359,12 @@
 			files = (
 				8ABB0EBC1E3320E30090852A /* ProfileTableViewController.swift in Sources */,
 				8ABB0EB41E33206A0090852A /* HomeTableViewController.swift in Sources */,
+				8ABB0EC31E3349CA0090852A /* BaseTableViewController.swift in Sources */,
 				8ABB0EB21E33204B0090852A /* MainViewController.swift in Sources */,
 				8ABB0EB81E3320B60090852A /* DiscoverTableViewController.swift in Sources */,
+				8ABB0EC71E3353B20090852A /* UIView+AutoLayout.swift in Sources */,
 				8ABB0EBA1E3320D60090852A /* MessageTableViewController.swift in Sources */,
+				8ABB0EC51E334BED0090852A /* VisitorView.swift in Sources */,
 				8ABB0E7C1E33199D0090852A /* AppDelegate.swift in Sources */,
 				8ABB0EC11E332F150090852A /* NullViewController.swift in Sources */,
 			);
