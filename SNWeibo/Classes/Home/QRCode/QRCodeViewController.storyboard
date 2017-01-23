@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="d4n-SQ-DG8">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Code View Controller-->
+        <scene sceneID="8wg-Lm-yiV">
+            <objects>
+                <viewController id="zlP-fz-duD" customClass="QRCodeViewController" customModule="SNWeibo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8nv-47-kKE"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZFG-4y-lPo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uNF-vo-8U3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YCS-qo-CHq">
+                                <rect key="frame" x="0.0" y="618" width="375" height="49"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="mll-Gy-Hpe"/>
+                                </constraints>
+                                <items>
+                                    <tabBarItem tag="1" title="QRCode" image="qrcode_tabbar_icon_qrcode" id="IfR-zi-cl5"/>
+                                    <tabBarItem title="BarCode" image="qrcode_tabbar_icon_barcode" id="IUO-VH-Qn2"/>
+                                </items>
+                                <color key="barTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </tabBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XFL-c3-Nix" userLabel="qrcode_scan_superview">
+                                <rect key="frame" x="88" y="144" width="200" height="200"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qrcode_border" translatesAutoresizingMaskIntoConstraints="NO" id="vku-bA-0xT">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qrcode_scanline_barcode" translatesAutoresizingMaskIntoConstraints="NO" id="Del-A7-XVI" userLabel="Scan LineView">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Del-A7-XVI" firstAttribute="height" secondItem="XFL-c3-Nix" secondAttribute="height" id="7cZ-W4-gbd"/>
+                                    <constraint firstAttribute="trailing" secondItem="vku-bA-0xT" secondAttribute="trailing" id="BH3-vt-YqG"/>
+                                    <constraint firstItem="Del-A7-XVI" firstAttribute="top" secondItem="XFL-c3-Nix" secondAttribute="top" id="Dds-zS-jLT"/>
+                                    <constraint firstAttribute="width" constant="200" id="VO8-28-Hfm"/>
+                                    <constraint firstItem="vku-bA-0xT" firstAttribute="top" secondItem="XFL-c3-Nix" secondAttribute="top" id="Xty-xe-zmK"/>
+                                    <constraint firstAttribute="height" constant="200" id="Y31-C0-iQ6"/>
+                                    <constraint firstItem="Del-A7-XVI" firstAttribute="width" secondItem="XFL-c3-Nix" secondAttribute="width" id="Ycj-Pn-G05"/>
+                                    <constraint firstItem="vku-bA-0xT" firstAttribute="leading" secondItem="XFL-c3-Nix" secondAttribute="leading" id="p7D-3S-NjU"/>
+                                    <constraint firstAttribute="bottom" secondItem="vku-bA-0xT" secondAttribute="bottom" id="wFr-PA-c9n"/>
+                                    <constraint firstItem="Del-A7-XVI" firstAttribute="centerX" secondItem="XFL-c3-Nix" secondAttribute="centerX" id="zFd-Y2-mCS"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Align QR/Bar Code within frame to scan" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qh8-X6-iKN">
+                                <rect key="frame" x="48" y="354" width="279" height="18"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.10926418439716312" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="279" id="Gqz-xz-fHO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CBa-XZ-L8D">
+                                <rect key="frame" x="144" y="556" width="87" height="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="My QR Code" backgroundImage="qrcode_button_background">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="myQRCodeClick:" destination="zlP-fz-duD" eventType="touchUpInside" id="lB2-Vh-VwR"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YCS-qo-CHq" firstAttribute="leading" secondItem="uNF-vo-8U3" secondAttribute="leading" id="CMd-C3-jCz"/>
+                            <constraint firstItem="qh8-X6-iKN" firstAttribute="centerX" secondItem="uNF-vo-8U3" secondAttribute="centerX" id="QkV-Vs-KxA"/>
+                            <constraint firstItem="qh8-X6-iKN" firstAttribute="top" secondItem="XFL-c3-Nix" secondAttribute="bottom" constant="10" id="RSD-bR-VXh"/>
+                            <constraint firstItem="CBa-XZ-L8D" firstAttribute="centerX" secondItem="uNF-vo-8U3" secondAttribute="centerX" id="SNU-Kb-BGy"/>
+                            <constraint firstItem="XFL-c3-Nix" firstAttribute="top" secondItem="8nv-47-kKE" secondAttribute="bottom" constant="80" id="XJP-62-d0L"/>
+                            <constraint firstItem="XFL-c3-Nix" firstAttribute="centerX" secondItem="uNF-vo-8U3" secondAttribute="centerX" id="cX4-81-3BX"/>
+                            <constraint firstAttribute="trailing" secondItem="YCS-qo-CHq" secondAttribute="trailing" id="dv0-Uf-ULs"/>
+                            <constraint firstItem="YCS-qo-CHq" firstAttribute="top" secondItem="CBa-XZ-L8D" secondAttribute="bottom" constant="30" id="hri-Eg-CKA"/>
+                            <constraint firstItem="ZFG-4y-lPo" firstAttribute="top" secondItem="YCS-qo-CHq" secondAttribute="bottom" id="nWu-SC-C2M"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Daz-uR-0JC">
+                        <barButtonItem key="leftBarButtonItem" title="Exit" id="Y2i-Gn-64Z">
+                            <connections>
+                                <action selector="exit:" destination="zlP-fz-duD" id="Dz5-RQ-Ivw"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Album" id="DSs-ac-XhD"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="containerHeightCons" destination="Y31-C0-iQ6" id="fdU-Cf-d5J"/>
+                        <outlet property="customTabBar" destination="YCS-qo-CHq" id="RhW-yn-TFd"/>
+                        <outlet property="resultLabel" destination="qh8-X6-iKN" id="2RH-9Z-LfA"/>
+                        <outlet property="scanLineCons" destination="Dds-zS-jLT" id="Ovs-KH-xsS"/>
+                        <outlet property="scanLineView" destination="Del-A7-XVI" id="9hs-qc-Dyw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wO0-up-ntw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-575.20000000000005" y="125.4872563718141"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="QLY-dd-qVJ">
+            <objects>
+                <navigationController id="d4n-SQ-DG8" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="vdg-60-Qd6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="zlP-fz-duD" kind="relationship" relationship="rootViewController" id="SEd-aZ-JMi"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5a6-E5-Kc5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1375" y="127"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="qrcode_border" width="51" height="51"/>
+        <image name="qrcode_button_background" width="34" height="32"/>
+        <image name="qrcode_scanline_barcode" width="248" height="124"/>
+        <image name="qrcode_tabbar_icon_barcode" width="40" height="40"/>
+        <image name="qrcode_tabbar_icon_qrcode" width="40" height="40"/>
+    </resources>
+</document>
