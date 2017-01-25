@@ -10,7 +10,7 @@ import UIKit
 
 class BaseTableViewController: UITableViewController, VisitorViewDelegate {
     // define a variable to store the status whether user is logged in
-    var userLogin = true
+    var userLogin = UserAccount.userLogin()
     
     // define a variable to store the unlogged-in UI
     var visitorView: VisitorView?
@@ -39,9 +39,17 @@ class BaseTableViewController: UITableViewController, VisitorViewDelegate {
 
     func loginBtnWillClick() {
         print(#function)
+        
+        // modally present log-in UI
+        let oauthVC = OAuthViewController()
+        let nav = UINavigationController(rootViewController: oauthVC)
+        present(nav, animated: true, completion: nil)
+//        present(oauthVC, animated: true, completion: nil)
     }
     
     func registerBtnWillClick() {
-        print(#function)
+//        print(#function)
+//        print("http://www.yahoo.com/yz.plist".cacheDir())
+        
     }
 }

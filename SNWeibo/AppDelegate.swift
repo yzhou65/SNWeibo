@@ -22,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // create window and root controller
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.backgroundColor = UIColor.white
+        
+//        window?.rootViewController = OAuthViewController()
         window?.rootViewController = MainViewController()
         
         window?.makeKeyAndVisible()

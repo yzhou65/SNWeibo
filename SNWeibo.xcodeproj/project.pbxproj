@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A29A9DD1E370A8000845A2A /* NetworkTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A29A9DC1E370A8000845A2A /* NetworkTools.swift */; };
+		8A29A9DF1E3713CD00845A2A /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A29A9DE1E3713CD00845A2A /* UserAccount.swift */; };
+		8A29A9EB1E384DCE00845A2A /* String+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A29A9EA1E384DCE00845A2A /* String+Category.swift */; };
 		8ABB0E7C1E33199D0090852A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABB0E7B1E33199D0090852A /* AppDelegate.swift */; };
 		8ABB0E831E33199D0090852A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8ABB0E821E33199D0090852A /* Assets.xcassets */; };
 		8ABB0E911E33199D0090852A /* SNWeiboTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABB0E901E33199D0090852A /* SNWeiboTests.swift */; };
@@ -31,6 +34,7 @@
 		8ABB0ED91E35B38D0090852A /* QRCodeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8ABB0ED81E35B38D0090852A /* QRCodeViewController.storyboard */; };
 		8ABB0EDB1E35B4F20090852A /* QRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABB0EDA1E35B4F20090852A /* QRCodeViewController.swift */; };
 		8ABB0EDD1E3698AC0090852A /* QRCodeCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABB0EDC1E3698AC0090852A /* QRCodeCardViewController.swift */; };
+		8ABB0FB61E36D4E80090852A /* OAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABB0FB51E36D4E80090852A /* OAuthViewController.swift */; };
 		DDB91DA68748987CB0B33359 /* Pods_SNWeibo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ED6F001E46814F152B06F4D /* Pods_SNWeibo.framework */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +58,9 @@
 /* Begin PBXFileReference section */
 		4ED6F001E46814F152B06F4D /* Pods_SNWeibo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SNWeibo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		67BC3C482D65C8EF1C40B9A6 /* Pods-SNWeibo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SNWeibo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SNWeibo/Pods-SNWeibo.debug.xcconfig"; sourceTree = "<group>"; };
+		8A29A9DC1E370A8000845A2A /* NetworkTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkTools.swift; sourceTree = "<group>"; };
+		8A29A9DE1E3713CD00845A2A /* UserAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
+		8A29A9EA1E384DCE00845A2A /* String+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Category.swift"; sourceTree = "<group>"; };
 		8ABB0E781E33199D0090852A /* SNWeibo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SNWeibo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ABB0E7B1E33199D0090852A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8ABB0E821E33199D0090852A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -85,6 +92,7 @@
 		8ABB0EDA1E35B4F20090852A /* QRCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeViewController.swift; sourceTree = "<group>"; };
 		8ABB0EDC1E3698AC0090852A /* QRCodeCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeCardViewController.swift; sourceTree = "<group>"; };
 		8ABB0EDF1E36BACF0090852A /* Weibo-Bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Weibo-Bridge.h"; sourceTree = "<group>"; };
+		8ABB0FB51E36D4E80090852A /* OAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthViewController.swift; sourceTree = "<group>"; };
 		91F65668169E31BB1ABCFCE8 /* Pods-SNWeibo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SNWeibo.release.xcconfig"; path = "Pods/Target Support Files/Pods-SNWeibo/Pods-SNWeibo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,6 +128,13 @@
 				4ED6F001E46814F152B06F4D /* Pods_SNWeibo.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8A29A9EC1E38C8BE00845A2A /* NewFeatures */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NewFeatures;
 			sourceTree = "<group>";
 		};
 		8ABB0E6F1E33199D0090852A = {
@@ -177,6 +192,8 @@
 		8ABB0EA91E331F680090852A /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8A29A9EC1E38C8BE00845A2A /* NewFeatures */,
+				8ABB0FB41E36D4750090852A /* OAuth */,
 				8ABB0EAA1E331F680090852A /* Common */,
 				8ABB0EAB1E331F680090852A /* Discover */,
 				8ABB0EAC1E331F680090852A /* Home */,
@@ -247,6 +264,8 @@
 			isa = PBXGroup;
 			children = (
 				8ABB0EC61E3353B20090852A /* UIView+AutoLayout.swift */,
+				8A29A9DC1E370A8000845A2A /* NetworkTools.swift */,
+				8A29A9EA1E384DCE00845A2A /* String+Category.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -279,6 +298,15 @@
 				8ABB0EDC1E3698AC0090852A /* QRCodeCardViewController.swift */,
 			);
 			path = QRCode;
+			sourceTree = "<group>";
+		};
+		8ABB0FB41E36D4750090852A /* OAuth */ = {
+			isa = PBXGroup;
+			children = (
+				8ABB0FB51E36D4E80090852A /* OAuthViewController.swift */,
+				8A29A9DE1E3713CD00845A2A /* UserAccount.swift */,
+			);
+			path = OAuth;
 			sourceTree = "<group>";
 		};
 		D44087E0002148DF3FBC38B8 /* Pods */ = {
@@ -494,12 +522,16 @@
 				8ABB0ED41E342E950090852A /* PopoverViewController.swift in Sources */,
 				8ABB0EC71E3353B20090852A /* UIView+AutoLayout.swift in Sources */,
 				8ABB0EBA1E3320D60090852A /* MessageTableViewController.swift in Sources */,
+				8A29A9DD1E370A8000845A2A /* NetworkTools.swift in Sources */,
+				8ABB0FB61E36D4E80090852A /* OAuthViewController.swift in Sources */,
+				8A29A9EB1E384DCE00845A2A /* String+Category.swift in Sources */,
 				8ABB0EDD1E3698AC0090852A /* QRCodeCardViewController.swift in Sources */,
 				8ABB0EC51E334BED0090852A /* VisitorView.swift in Sources */,
 				8ABB0E7C1E33199D0090852A /* AppDelegate.swift in Sources */,
 				8ABB0ECB1E341BC30090852A /* TitleButton.swift in Sources */,
 				8ABB0EC11E332F150090852A /* NullViewController.swift in Sources */,
 				8ABB0ED21E342D150090852A /* PopoverPresentationController.swift in Sources */,
+				8A29A9DF1E3713CD00845A2A /* UserAccount.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

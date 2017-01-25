@@ -14,8 +14,6 @@ class HomeTableViewController: BaseTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        SVProgressHUD.showInfo(withStatus: "Hello, my friend")
 
         // user is not loggined in, set VisitorView
         if !userLogin {
