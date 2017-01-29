@@ -111,6 +111,9 @@ extension OAuthViewController: UIWebViewDelegate {
             account.loadUserInfo(completed: { (account, error) in
                 if account != nil {
                     account!.archiveAccount()
+                    
+                    // turn to welcome page. The notification bring along the object "false"
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: YZSwitchRootViewControllerKey), object: false)
                 }
                 else {
                     print(error as Any)

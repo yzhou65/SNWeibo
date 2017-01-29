@@ -7,10 +7,18 @@
 //
 
 import UIKit
-import AFNetworking
 import SVProgressHUD
 
+let YZHomeCellReuseIdentifier = "YZHomeCellReuseIdentifier"
+
 class HomeTableViewController: BaseTableViewController {
+    /// array of weibo statuses(posts)
+    var statuses: [Status]? {
+        didSet {
+            // once the variable is assigned data, reload the tableView
+            self.tableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,11 +35,37 @@ class HomeTableViewController: BaseTableViewController {
         // register notification and spy on the popover menu and its arrow
         NotificationCenter.default.addObserver(self, selector: #selector(changeArrow), name: NSNotification.Name(YZPopoverAnimatorWillPresent), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(changeArrow), name: NSNotification.Name(YZPopoverAnimatorWillDismiss), object: nil)
+        
+        // register the cell
+        tableView.register(StatusNormalTableViewCell.self, forCellReuseIdentifier: YZHomeCellReuseIdentifier)
+        
+        // set row height with an estimate height and auto-dimension
+//        tableView.estimatedRowHeight = 200
+//        tableView.rowHeight = UITableViewAutomaticDimension
+        
+//        tableView.rowHeight = 300
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        
+        // load weibo data
+        loadData()
     }
     
     // == OC's dealloc
     deinit {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    // MARK: inner control methods
+    /**
+     * Loads the weibo statuses
+     */
+    private func loadData() {
+        Status.loadStatuses { (models, error) in
+            if error != nil {
+                return
+            }
+            self.statuses = models  // this triggers the calling of statuses' didSet method
+        }
     }
     
     /**
@@ -62,14 +96,11 @@ class HomeTableViewController: BaseTableViewController {
         navigationItem.titleView = titleBtn
     }
     
-    // MARK: buttons' listeners
+    // MARK: buttons' callbacks
     /**
      * change titleBtn's status when clicked
      */
     func titleBtnClick(_ btn: TitleButton) {
-        // change arrow direction. Due to the notification registered and the "changeArrow" method, no need to write this here, otherwise arrow direction will be changed twice
-//        btn.isSelected = !btn.isSelected
-        
         // pop out the popover
         let sb = UIStoryboard(name: "PopoverViewController", bundle: nil)
         let vc = sb.instantiateInitialViewController()
@@ -91,21 +122,6 @@ class HomeTableViewController: BaseTableViewController {
         present(vc!, animated: true, completion: nil)
     }
     
-    // MARK: inner control methods
-    
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
-    
     // MARK: lazy init
     /**
      * defines a variable for animation transitioning delegate
@@ -117,5 +133,52 @@ class HomeTableViewController: BaseTableViewController {
         pa.presentFrame = CGRect(x: 100, y: 56, width: 200, height: 350)
         return pa
     }()
+    
+    /// status row height cached as a dictionary. key is status id, value is row height
+    var rowCache: [Int: CGFloat] = [Int: CGFloat]()
+    
+    /**
+     * Once memory warning is received due to very frequent status loading
+     */
+    override func didReceiveMemoryWarning() {
+        rowCache.removeAll()
+    }
+}
 
+// MARK: - Table view data source
+extension HomeTableViewController {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return statuses?.count ?? 0
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: YZHomeCellReuseIdentifier, for: indexPath) as! StatusTableViewCell
+        cell.status = statuses![indexPath.row]
+        
+        return cell
+    }
+    
+    /**
+     * Returns the height of a row. 
+     * This method is frequently called, thus cellheight should be cached because it is wasteful to compute row height every time the row is reused
+     */
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let status = statuses![indexPath.row]
+        
+        // checks whether the row height was cached
+        if let height = rowCache[status.id] {
+            print("Row height from cache")
+            return height
+        }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: YZHomeCellReuseIdentifier) as! StatusTableViewCell
+        let rowHeight = cell.rowHeight(status: status)
+        
+        // cache the row height
+        rowCache[status.id] = rowHeight
+        print("Row height re-calculated")
+        
+        return rowHeight
+    }
 }
