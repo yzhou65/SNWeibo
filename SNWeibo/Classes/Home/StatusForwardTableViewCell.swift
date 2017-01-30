@@ -10,6 +10,16 @@ import UIKit
 
 class StatusForwardTableViewCell: StatusTableViewCell {
     
+    // overriding the superclass's status will not affect superclass
+    // if superclass defines a didSet, child class can only override didSet
+    override var status: Status? {
+        didSet {
+            let name = status?.retweeted_status?.user?.name ?? ""
+            let text = status?.retweeted_status?.text ?? ""
+            forwardLabel.text = name + ": " + text
+        }
+    }
+    
     override func setupUI() {
         super.setupUI()
         

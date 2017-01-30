@@ -49,20 +49,20 @@ class VisitorView: UIView {
         addSubview(registerButton)
         
         // arrange widgets
-        iconView.xmg_AlignInner(type: XMG_AlignType.center, referView: self, size: nil)
-        homeIcon.xmg_AlignInner(type: XMG_AlignType.center, referView: self, size: nil)
-        messageLabel.xmg_AlignVertical(type: XMG_AlignType.bottomCenter, referView: iconView, size: nil)
+        _ = iconView.xmg_AlignInner(type: XMG_AlignType.center, referView: self, size: nil)
+        _ = homeIcon.xmg_AlignInner(type: XMG_AlignType.center, referView: self, size: nil)
+        _ = messageLabel.xmg_AlignVertical(type: XMG_AlignType.bottomCenter, referView: iconView, size: nil)
         
         // NSLayoutConstraint's arguments: xx's aa attribute = yy's bb attribute * multiplier + constant
         let widthCons = NSLayoutConstraint(item: messageLabel, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1.0, constant: 224)
         addConstraint(widthCons)
         
         // set buttons
-        registerButton.xmg_AlignVertical(type: XMG_AlignType.bottomLeft, referView: messageLabel, size: CGSize(width: 100, height: 30), offset: CGPoint(x: 0, y: 20))
-        loginButton.xmg_AlignVertical(type: XMG_AlignType.bottomRight, referView: messageLabel, size: CGSize(width: 100, height: 30), offset: CGPoint(x: 0, y: 20))
+        _ = registerButton.xmg_AlignVertical(type: XMG_AlignType.bottomLeft, referView: messageLabel, size: CGSize(width: 100, height: 30), offset: CGPoint(x: 0, y: 20))
+        _ = loginButton.xmg_AlignVertical(type: XMG_AlignType.bottomRight, referView: messageLabel, size: CGSize(width: 100, height: 30), offset: CGPoint(x: 0, y: 20))
         
         // set HUV
-        maskBGView.xmg_Fill(self)
+        _ = maskBGView.xmg_Fill(self)
     }
     
     // if override init(frame), then this method has to be explicitly written

@@ -11,6 +11,24 @@ import SDWebImage
 
 let YZPictureViewCellReuseIdentifier = "YZPictureViewCellReuseIdentifier"
 
+/**
+ * Cell type
+ 
+ - NormalCell: original cell
+ - ForwardCell: shared cell
+ */
+enum StatusTableViewCellType: String {
+    case NormalCell = "NormalCell"
+    case ForwardCell = "ForwardCell"
+    
+    /**
+     * This method is analogous to a class func in a class
+     */
+    static func cellType(status: Status) -> String {
+        return status.retweeted_status != nil ? ForwardCell.rawValue : NormalCell.rawValue
+    }
+}
+
 class StatusTableViewCell: UITableViewCell {
     
     /// pictureView's width and height constraints
@@ -30,7 +48,7 @@ class StatusTableViewCell: UITableViewCell {
             contentLabel.text = status?.text
             
             // set picture's dimension
-            pictureView.status = status // after assigning pictureView's status, compute and set the constraints
+            pictureView.status = status?.retweeted_status != nil ? status?.retweeted_status : status // after assigning pictureView's status, compute and set the constraints
             
             // note: calculateImageSize() needs status object, thus pictureView's status should be set before
             let size = pictureView.calculateImageSize()

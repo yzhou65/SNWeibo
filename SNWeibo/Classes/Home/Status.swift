@@ -57,30 +57,66 @@ class Status: NSObject {
         didSet {
             // initialize the array
             storedPicURLs = [URL]()
+            storedLargePicURLs = [URL]()
+            
             for dict in pic_urls! {
-                if let urlStr = dict["thumbnail_pic"] {
+                if let urlStr = dict["thumbnail_pic"] as? String {
                     // url string -> url and saved to array
-                    storedPicURLs?.append(URL(string: urlStr as! String)!)
+                    storedPicURLs?.append(URL(string: urlStr)!)
+                    
+                    // large picture
+                    let largeURLStr = urlStr.replacingOccurrences(of: "thumbnail", with: "large")
+                    storedLargePicURLs?.append(URL(string: largeURLStr)!)
+                    
                 }
             }
         }
     }
     
-    /// the array of the current weibo's all pictures' urls
+    /// the array of the current weibo's small pictures' urls
     var storedPicURLs: [URL]?
+    
+    /// the array of the current weibo's large pictures' urls
+    var storedLargePicURLs: [URL]?
     
     /// user object that contains user data
     var user: User?
     
+    /// a shared(forwarded) status
+    var retweeted_status: Status?
+    
+    // if it is a forwarded status, no original picture
+    /// array of original or forwarded status's picture urls. It only has getter
+    var pictureURLs: [URL]? {
+        return retweeted_status != nil ? retweeted_status?.storedPicURLs : storedPicURLs
+    }
+    
+    /// array of original or forwarded status's large picture urls. It only has getter
+    var largePictureURLs: [URL]? {
+        return retweeted_status != nil ? retweeted_status?.storedLargePicURLs: storedLargePicURLs
+    }
+    
     /**
      * Loads statuses
      */
-    class func loadStatuses(completed: @escaping (_ models: [Status]?, _ error: Error?)->()) {
+    class func loadStatuses(since_id: Int, max_id: Int, completed: @escaping (_ models: [Status]?, _ error: Error?)->()) {
         let path = "2/statuses/home_timeline.json"
-        let params = ["access_token": UserAccount.unarchiveAccount()?.access_token]
+        var params = ["access_token": UserAccount.unarchiveAccount()?.access_token]
+        
+        // pull-down to refresh
+        if since_id > 0 {
+            params["since_id"] = "\(since_id)"
+        }
+        
+        // pull-up to refresh
+        if max_id > 0 {
+            params["max_id"] = "\(max_id - 1)"
+        }
         
         // send asynchrous network request
         NetworkTools.sharedNetworkTools().get(path, parameters: params, progress: nil, success: { (_, json) in
+//            print(json)
+            
             // get statuses
             let dictArr = (json as! [String: AnyObject])["statuses"]
             let models = dict2Model(dictArr: dictArr as! [[String : AnyObject]])
@@ -99,7 +135,10 @@ class Status: NSObject {
      * Caches the content images of a weibo status
      */
     class func cacheStatusImages(list: [Status], completed: @escaping (_ models: [Status]?, _ error: Error?)->()) {
-//        print("abc".cacheDir())
+        if list.count == 0 {
+            completed(list, nil)
+            return
+        }
         
         // create a group. Before Swift 3.0: group = dispatch_group_create()
         let group = DispatchGroup()
@@ -111,17 +150,17 @@ class Status: NSObject {
 //            }
             
             // equivalent to the above commented block of codes
-            guard status.storedPicURLs != nil else {
+            guard status.pictureURLs != nil else {
                 continue
             }
             
-            for url in status.storedPicURLs! {
+            for url in status.pictureURLs! {
                 // put downloading task into the group. Before Swift 3: dispatch_group_enter(group)
                 group.enter()
                 
                 // caches pictures. Note: this step is asynchrous, so dispatch group is necessary
                 SDWebImageManager.shared().downloadImage(with: url, options: SDWebImageOptions(rawValue: 0), progress: nil, completed: { (_, _, _, _, _) in
-                    print("cached")
+//                    print("cached")
                     group.leave()   // before Swift 3: dispatch_group_leave(group)
                 })
             }
@@ -129,7 +168,7 @@ class Status: NSObject {
         
         // once all pictures cached, notify caller with the closure
         group.notify(queue: DispatchQueue.main) {
-            print("done")
+//            print("done")
             // here all pictures must have already been cached
             completed(list, nil)
         }
@@ -158,11 +197,18 @@ class Status: NSObject {
     /**
      * During the operation of "setValuesForKeys", this method is called
      * A User object can be initialized with dict data when the "user" dict within status dictArr is set values
+     * In this method, several intercepting operation can be implemented
      */
     override func setValue(_ value: Any?, forKey key: String) {
         // checks whether status dictArr's "user" dict is being assigned values
         if "user" == key {
             user = User(dict: value as! [String : AnyObject])
+            return
+        }
+        
+        // checks whether it is a shared/forwarded status
+        if "retweeted_status" == key {
+            retweeted_status = Status(dict: value as! [String : AnyObject])
             return
         }
         super.setValue(value, forKey: key)

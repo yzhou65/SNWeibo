@@ -30,11 +30,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.backgroundColor = UIColor.white
         
 //        window?.rootViewController = MainViewController()
+        print("New version available: \(checksUpdate())")
         window?.rootViewController = defaultController()
         
         window?.makeKeyAndVisible()
         
-        print("New version available: \(checksUpdate())")
         return true
     }
     

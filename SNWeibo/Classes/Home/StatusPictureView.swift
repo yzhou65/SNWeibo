@@ -35,8 +35,9 @@ class StatusPictureView: UICollectionView {
         // set background color
         backgroundColor = UIColor.darkGray
         
-        // set dataSource
+        // set dataSource and delegate
         dataSource = self
+        delegate = self
     }
     
     /**
@@ -109,8 +110,16 @@ class StatusPictureView: UICollectionView {
 
 }
 
-// MARK: UICollectionViewDataSource
-extension StatusPictureView: UICollectionViewDataSource {
+// MARK: UICollectionViewDataSource, UICollectionViewDelegate
+
+/// the notification of a picture being selected
+let YZStatusPictureViewSelected = "YZStatusPictureViewSelected"
+/// the currently selected picture's index key
+let YZStatusPictureViewIndexKey = "YZStatusPictureViewIndexKey"
+/// the currently selected picture's url key
+let YZStatusPictureViewURLsKey = "YZStatusPictureViewURLsKey"
+
+extension StatusPictureView: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return status?.storedPicURLs?.count ?? 0
     }
@@ -120,6 +129,12 @@ extension StatusPictureView: UICollectionViewDataSource {
         
         cell.imageURL = status?.storedPicURLs![indexPath.item]
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        print(status?.storedLargePicURLs![indexPath.item])
+        let infoDict = [YZStatusPictureViewIndexKey: indexPath, YZStatusPictureViewURLsKey: (status?.storedLargePicURLs)!] as [String : Any]
+        NotificationCenter.default.post(name: NSNotification.Name(YZStatusPictureViewSelected), object: self, userInfo: infoDict)
     }
 }
 
