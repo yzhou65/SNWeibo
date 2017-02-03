@@ -17,6 +17,7 @@
 		8A1C9EB51E3FE5200015677F /* PhotoBrowserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C9EB41E3FE5200015677F /* PhotoBrowserController.swift */; };
 		8A1C9EB71E3FFECE0015677F /* UIColor+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C9EB61E3FFECE0015677F /* UIColor+Category.swift */; };
 		8A1C9EB91E4000390015677F /* PhotoBrowserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C9EB81E4000390015677F /* PhotoBrowserCell.swift */; };
+		8A1C9EBC1E4435B50015677F /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C9EBB1E4435B50015677F /* ComposeViewController.swift */; };
 		8A29A9DD1E370A8000845A2A /* NetworkTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A29A9DC1E370A8000845A2A /* NetworkTools.swift */; };
 		8A29A9DF1E3713CD00845A2A /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A29A9DE1E3713CD00845A2A /* UserAccount.swift */; };
 		8A29A9EB1E384DCE00845A2A /* String+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A29A9EA1E384DCE00845A2A /* String+Category.swift */; };
@@ -86,6 +87,7 @@
 		8A1C9EB41E3FE5200015677F /* PhotoBrowserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBrowserController.swift; sourceTree = "<group>"; };
 		8A1C9EB61E3FFECE0015677F /* UIColor+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Category.swift"; sourceTree = "<group>"; };
 		8A1C9EB81E4000390015677F /* PhotoBrowserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBrowserCell.swift; sourceTree = "<group>"; };
+		8A1C9EBB1E4435B50015677F /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
 		8A29A9DC1E370A8000845A2A /* NetworkTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkTools.swift; sourceTree = "<group>"; };
 		8A29A9DE1E3713CD00845A2A /* UserAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
 		8A29A9EA1E384DCE00845A2A /* String+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Category.swift"; sourceTree = "<group>"; };
@@ -175,6 +177,14 @@
 			path = PhotoBrowser;
 			sourceTree = "<group>";
 		};
+		8A1C9EBA1E4435920015677F /* Compose */ = {
+			isa = PBXGroup;
+			children = (
+				8A1C9EBB1E4435B50015677F /* ComposeViewController.swift */,
+			);
+			path = Compose;
+			sourceTree = "<group>";
+		};
 		8A29A9EC1E38C8BE00845A2A /* NewFeatures */ = {
 			isa = PBXGroup;
 			children = (
@@ -239,6 +249,7 @@
 		8ABB0EA91E331F680090852A /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8A1C9EBA1E4435920015677F /* Compose */,
 				8A29A9EC1E38C8BE00845A2A /* NewFeatures */,
 				8ABB0FB41E36D4750090852A /* OAuth */,
 				8ABB0EAA1E331F680090852A /* Common */,
@@ -608,6 +619,7 @@
 				8A29A9FC1E39E62000845A2A /* UIButton+Category.swift in Sources */,
 				8A1C9EB91E4000390015677F /* PhotoBrowserCell.swift in Sources */,
 				8ABB0ED21E342D150090852A /* PopoverPresentationController.swift in Sources */,
+				8A1C9EBC1E4435B50015677F /* ComposeViewController.swift in Sources */,
 				8A1C9EAC1E3DA5B00015677F /* StatusForwardTableViewCell.swift in Sources */,
 				8A29A9DF1E3713CD00845A2A /* UserAccount.swift in Sources */,
 				8A1C9EB51E3FE5200015677F /* PhotoBrowserController.swift in Sources */,

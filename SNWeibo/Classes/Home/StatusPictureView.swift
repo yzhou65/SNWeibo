@@ -85,6 +85,11 @@ class StatusPictureView: UICollectionView {
         var imageURL: URL? {
             didSet {
                 iconImageView.sd_setImage(with: imageURL)
+                
+                // whether needs to show gif icon
+                if imageURL!.pathExtension.lowercased() == "gif" {
+                    gifImageView.isHidden = false
+                }
             }
         }
         
@@ -97,11 +102,19 @@ class StatusPictureView: UICollectionView {
         
         private func setupUI() {
             contentView.addSubview(iconImageView)
+            iconImageView.addSubview(gifImageView)
+            
             _ = iconImageView.xmg_Fill(contentView)
+            _ = gifImageView.xmg_AlignInner(type: XMG_AlignType.bottomRight, referView: iconImageView, size: nil)
         }
         
         // MARK: lazy init
         private lazy var iconImageView: UIImageView = UIImageView()
+        private lazy var gifImageView: UIImageView = {
+            let iv = UIImageView(image: UIImage(named: "avatar_vgirl"))
+            iv.isHidden = true
+            return iv
+        }()
         
         required init?(coder aDecoder: NSCoder) {
             fatalError("init(coder:) has not been implemented")

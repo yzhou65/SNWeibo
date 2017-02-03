@@ -127,5 +127,9 @@ class MainViewController: UITabBarController {
     func composeBtnClick() {
         //Before swift 3.0, #function was __FUNCTION__
         print(#function)
+        
+        let composeVC = ComposeViewController()
+        let nav = UINavigationController(rootViewController: composeVC)
+        present(nav, animated: true, completion: nil)
     }
 }

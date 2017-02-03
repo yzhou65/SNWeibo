@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 private let photoBrowserCellReuseIdentifier = "photoCell"
 
@@ -53,6 +54,23 @@ class PhotoBrowserController: UIViewController {
     
     func save() {
         print(#function)
+        
+        let indexPath = collectionView.indexPathsForVisibleItems.last!
+        let cell = collectionView.cellForItem(at: indexPath) as! PhotoBrowserCell
+        
+        // save the image.
+        let image = cell.iconView.image!
+        UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil) // needs calling:  - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo;
+    }
+    
+    func image(_ image:UIImage, didFinishSavingWithError error:Error?, contextInfo:UnsafeRawPointer) {
+        if error != nil {
+            SVProgressHUD.showError(withStatus: "Save failed")
+            SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
+        } else {
+            SVProgressHUD.showSuccess(withStatus: "Save succeeded")
+            SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
+        }
     }
 
     // MARK: lazy init
@@ -82,7 +100,7 @@ class PhotoBrowserController: UIViewController {
 }
 
 // MARK: UICollectionViewDataSource
-extension PhotoBrowserController: UICollectionViewDataSource {
+extension PhotoBrowserController: UICollectionViewDataSource, PhotoBrowserCellDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return pictureURLs?.count ?? 0
     }
@@ -91,8 +109,13 @@ extension PhotoBrowserController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: photoBrowserCellReuseIdentifier, for: indexPath) as! PhotoBrowserCell
         cell.backgroundColor = UIColor.randomColor()
         cell.imageURL = pictureURLs![indexPath.item]
+        cell.photoBrowserCellDelegate = self
         
         return cell
+    }
+    
+    func photoBrowserCellDidClose(cell: PhotoBrowserCell) {
+        dismiss(animated: true, completion: nil)
     }
 }
 
