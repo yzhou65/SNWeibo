@@ -23,6 +23,9 @@
 		8A1C9F441E46F4020015677F /* EmoticonTextAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C9F3F1E46F4020015677F /* EmoticonTextAttachment.swift */; };
 		8A1C9F451E46F4020015677F /* EmoticonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C9F401E46F4020015677F /* EmoticonViewController.swift */; };
 		8A1C9F461E46F4020015677F /* UITextView+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C9F411E46F4020015677F /* UITextView+Category.swift */; };
+		8A1C9F9D1E4824980015677F /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C9F9A1E4824980015677F /* PhotoSelectorCell.swift */; };
+		8A1C9F9E1E4824980015677F /* PhotoSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C9F9B1E4824980015677F /* PhotoSelectorViewController.swift */; };
+		8A1C9F9F1E4824980015677F /* UIImage+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C9F9C1E4824980015677F /* UIImage+Category.swift */; };
 		8A29A9DD1E370A8000845A2A /* NetworkTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A29A9DC1E370A8000845A2A /* NetworkTools.swift */; };
 		8A29A9DF1E3713CD00845A2A /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A29A9DE1E3713CD00845A2A /* UserAccount.swift */; };
 		8A29A9EB1E384DCE00845A2A /* String+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A29A9EA1E384DCE00845A2A /* String+Category.swift */; };
@@ -98,6 +101,9 @@
 		8A1C9F3F1E46F4020015677F /* EmoticonTextAttachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmoticonTextAttachment.swift; sourceTree = "<group>"; };
 		8A1C9F401E46F4020015677F /* EmoticonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmoticonViewController.swift; sourceTree = "<group>"; };
 		8A1C9F411E46F4020015677F /* UITextView+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Category.swift"; sourceTree = "<group>"; };
+		8A1C9F9A1E4824980015677F /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
+		8A1C9F9B1E4824980015677F /* PhotoSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSelectorViewController.swift; sourceTree = "<group>"; };
+		8A1C9F9C1E4824980015677F /* UIImage+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Category.swift"; sourceTree = "<group>"; };
 		8A29A9DC1E370A8000845A2A /* NetworkTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkTools.swift; sourceTree = "<group>"; };
 		8A29A9DE1E3713CD00845A2A /* UserAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
 		8A29A9EA1E384DCE00845A2A /* String+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Category.swift"; sourceTree = "<group>"; };
@@ -190,6 +196,7 @@
 		8A1C9EBA1E4435920015677F /* Compose */ = {
 			isa = PBXGroup;
 			children = (
+				8A1C9F991E4824980015677F /* PhotoSelector */,
 				8A1C9F3C1E46F4020015677F /* EmoticonView */,
 				8A1C9EBB1E4435B50015677F /* ComposeViewController.swift */,
 			);
@@ -206,6 +213,16 @@
 				8A1C9F411E46F4020015677F /* UITextView+Category.swift */,
 			);
 			path = EmoticonView;
+			sourceTree = "<group>";
+		};
+		8A1C9F991E4824980015677F /* PhotoSelector */ = {
+			isa = PBXGroup;
+			children = (
+				8A1C9F9A1E4824980015677F /* PhotoSelectorCell.swift */,
+				8A1C9F9B1E4824980015677F /* PhotoSelectorViewController.swift */,
+				8A1C9F9C1E4824980015677F /* UIImage+Category.swift */,
+			);
+			path = PhotoSelector;
 			sourceTree = "<group>";
 		};
 		8A29A9EC1E38C8BE00845A2A /* NewFeatures */ = {
@@ -642,8 +659,10 @@
 				8ABB0ECB1E341BC30090852A /* TitleButton.swift in Sources */,
 				8A1C9EB21E3DCC9E0015677F /* HomeRefreshControl.swift in Sources */,
 				8A29A9FA1E39E61200845A2A /* UILabel+Category.swift in Sources */,
+				8A1C9F9E1E4824980015677F /* PhotoSelectorViewController.swift in Sources */,
 				8ABB0EC11E332F150090852A /* NullViewController.swift in Sources */,
 				8A29A9FC1E39E62000845A2A /* UIButton+Category.swift in Sources */,
+				8A1C9F9D1E4824980015677F /* PhotoSelectorCell.swift in Sources */,
 				8A1C9EB91E4000390015677F /* PhotoBrowserCell.swift in Sources */,
 				8ABB0ED21E342D150090852A /* PopoverPresentationController.swift in Sources */,
 				8A1C9EBC1E4435B50015677F /* ComposeViewController.swift in Sources */,
@@ -651,6 +670,7 @@
 				8A1C9F451E46F4020015677F /* EmoticonViewController.swift in Sources */,
 				8A29A9DF1E3713CD00845A2A /* UserAccount.swift in Sources */,
 				8A1C9EB51E3FE5200015677F /* PhotoBrowserController.swift in Sources */,
+				8A1C9F9F1E4824980015677F /* UIImage+Category.swift in Sources */,
 				8A1C9EAE1E3DB6730015677F /* StatusNormalTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -126,8 +126,8 @@ private class NewFeatureCell: UICollectionViewCell {
         contentView.addSubview(startButton)
         
         // set the layout
-        iconView.xmg_Fill(contentView)
-        startButton.xmg_AlignInner(type: XMG_AlignType.bottomCenter, referView: contentView, size: nil, offset: CGPoint(x: 0, y: -150))
+        _ = iconView.xmg_Fill(contentView)
+        _ = startButton.xmg_AlignInner(type: XMG_AlignType.bottomCenter, referView: contentView, size: nil, offset: CGPoint(x: 0, y: -150))
     }
     
     // MARK: lazy init

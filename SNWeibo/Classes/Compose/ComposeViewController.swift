@@ -11,12 +11,19 @@ import SVProgressHUD
 
 class ComposeViewController: UIViewController {
     
+    /// photo selector
+    private lazy var photoSelectorVC: PhotoSelectorViewController = PhotoSelectorViewController()
+    
+    /// emtoticon keyboard controller
     private lazy var emoticonVC: EmoticonViewController = EmoticonViewController { [unowned self](emoticon) in
         self.textView.insertEmoticon(emoticon: emoticon)
     }
     
     /// toolbar's bottom constraint
     var toolbarBottomConstraint: NSLayoutConstraint?
+    
+    /// photoSelector's height constraint
+    var photoViewHeightCons: NSLayoutConstraint?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,11 +34,15 @@ class ComposeViewController: UIViewController {
         
         // add the emoticon view controller as a child view controller
         addChildViewController(emoticonVC)
+        addChildViewController(photoSelectorVC)
+        
 //        textView.inputView = emoticonVC.view
         
         setupNav()
         
         setupInputView()
+        
+        setupPhotoView()
         
         setupToolbar()
     }
@@ -73,8 +84,11 @@ class ComposeViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        // explicitly pop out the keyboard
-        textView.becomeFirstResponder()
+        if photoViewHeightCons?.constant == 0 {
+            // explicitly pop out the keyboard
+            textView.becomeFirstResponder()
+        }
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -119,6 +133,7 @@ class ComposeViewController: UIViewController {
      */
     private func setupToolbar() {
         view.addSubview(toolbar)
+        view.addSubview(textLengthLabel)
         
         var items = [UIBarButtonItem]()
         let itemSettings = [["imageName": "compose_toolbar_picture", "action": "selectPicture"],
@@ -140,13 +155,31 @@ class ComposeViewController: UIViewController {
         let width = UIScreen.main.bounds.width
         let cons = toolbar.xmg_AlignInner(type: XMG_AlignType.bottomLeft, referView: view, size: CGSize(width: width, height: 44))
         toolbarBottomConstraint = toolbar.xmg_Constraint(cons, attribute: NSLayoutAttribute.bottom)
+        
+//        textLengthLabel.text = "140"
+        _ = textLengthLabel.xmg_AlignVertical(type: XMG_AlignType.topRight, referView: toolbar, size: nil, offset: CGPoint(x: -5, y: -5))
     }
     
     /**
      * Select photos
      */
     func selectPicture() {
+        // close system's default keyboard
+        textView.resignFirstResponder()
         
+        // adjust the photoSelector's height
+        photoViewHeightCons?.constant = UIScreen.main.bounds.height * 0.6
+    }
+    
+    func setupPhotoView() {
+        // add the phototSelectorVC
+        view.insertSubview(photoSelectorVC.view, belowSubview: toolbar)
+        
+        let size = UIScreen.main.bounds.size
+        let width = size.width
+        let height: CGFloat = 0     // size.height * 0.6
+        let cons = photoSelectorVC.view.xmg_AlignInner(type: XMG_AlignType.bottomLeft, referView: view, size: CGSize(width: width, height: height))
+        photoViewHeightCons = photoSelectorVC.view.xmg_Constraint(cons, attribute: NSLayoutAttribute.height)
     }
     
     /**
@@ -189,18 +222,19 @@ class ComposeViewController: UIViewController {
      * Send a weibo status
      */
     func sendStatus() {
-        print(#function)
+        let text = textView.emoticonAttributdText()
+        let image = photoSelectorVC.photoImages.first
         
-        let path = "2/statuses/update.json"
-        let params = ["access_token": UserAccount.unarchiveAccount()!.access_token!, "status": textView.emoticonAttributdText()]
-        NetworkTools.sharedNetworkTools().post(path, parameters: params, progress: nil, success: { (_, json) in
+        NetworkTools.sharedNetworkTools().sendStatus(text: text, image: image, successCallback: { (status) in
+            
             SVProgressHUD.showSuccess(withStatus: "Status sent")
             SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.dark)
             
             // close the sending view
             self.back()
             
-        }) { (_, error) in
+        }) { (error) in
+            
             print(error)
             SVProgressHUD.showError(withStatus: "Status failed to be sent")
             SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.dark)
@@ -225,13 +259,27 @@ class ComposeViewController: UIViewController {
     }()
     
     private lazy var toolbar: UIToolbar = UIToolbar()
+    
+    /// the remaining length of texts that can be input
+    fileprivate lazy var textLengthLabel: UILabel = {
+        let label = UILabel()
+        return label
+    }()
 }
 
+
+private let maxTextLength = 10
 
 extension ComposeViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         // note: input of default emoticon will not hide the placeholderLabel (textView does not see default emoticon as "hasText")
         placeholderLabel.isHidden = textView.hasText
         navigationItem.rightBarButtonItem?.isEnabled = textView.hasText
+        
+        // the length of currently input content
+        let length = textView.emoticonAttributdText().characters.count
+        let remain = maxTextLength - length
+        textLengthLabel.textColor = remain > 0 ? UIColor.darkGray : UIColor.red
+        textLengthLabel.text = (remain == maxTextLength ? "" : "\(remain)")
     }
 }
